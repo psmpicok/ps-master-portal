@@ -1,0 +1,15 @@
+{
+  "name": "ප්‍රාදේශීය සභාව - ප්‍රධාන පාලක පුවරුව",
+  "short_name": "PS Portal",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1E1B4B",
+  "theme_color": "#1E1B4B",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2942/2942813.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

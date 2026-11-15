@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ප්‍රාදේශීය සභාව - ප්‍රධාන පාලක පුවරුව (Master Portal)</title>
+    <!-- Google Fonts - Noto Sans Sinhala -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA Manifest & Theme Color -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1E1B4B">
+</head>
+<body>
+
+    <!-- Top Header -->
+    <header class="app-header">
+        <div class="header-left">
+            <h1>ප්‍රාදේශීය සභාව - ප්‍රධාන පාලක පුවරුව</h1>
+            <span id="sync-status" class="status-badge online">🟢 Online</span>
+        </div>
+        <div class="header-right">
+            <span id="last-updated">අවසන් යාවත්කාලීනය: --:--:--</span>
+            <button id="refresh-btn" class="icon-btn" title="Refresh">🔄</button>
+            <button id="logout-btn" class="logout-btn" style="display:none;">ඉවත් වන්න</button>
+        </div>
+    </header>
+
+    <!-- Login Screen Modal/Container -->
+    <div id="login-container" class="login-overlay">
+        <div class="login-card">
+            <h2>ප්‍රාදේශීය සභා පෝටල් වෙත පිවිසෙන්න</h2>
+            <p>කරුණාකර ඔබේ පරිශීලක නාමය සහ මුරපදය ඇතුළත් කරන්න.</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>පරිශීලක නාමය (Username)</label>
+                    <input type="text" id="username" required placeholder="උදා: chairman / admin">
+                </div>
+                <div class="form-group">
+                    <label>මුරපදය (Password)</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-primary">පිවිසෙන්න (Login)</button>
+                <div id="login-error" class="error-msg"></div>
+            </form>
+            <div class="demo-creds">
+                <small>ඩෙමෝ සඳහා: <b>chairman / 1234</b> හෝ <b>admin / 1234</b> පාවිච්චි කරන්න.</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <main id="dashboard-main" class="dashboard-container" style="display:none;">
+        
+        <!-- A. Priority Alert Banner -->
+        <section id="alert-banner" class="alert-banner">
+            <div class="performance-indicator">
+                <span id="perf-label">සමස්ත කාර්ය සාධනය:</span>
+                <strong id="perf-value">--%</strong>
+            </div>
+            <div id="alert-pills" class="alert-pills">
+                <!-- Dynamic urgent alert pills will appear here -->
+            </div>
+        </section>
+
+        <!-- B. Hero Carousel (Touch & Auto Slider) -->
+        <section class="slider-section">
+            <h2>අංශ සාරාංශය (Overview Slider)</h2>
+            <div class="carousel-container">
+                <button id="slider-prev" class="slider-nav-btn">❮</button>
+                <div id="hero-carousel" class="carousel-track">
+                    <!-- Cards for 8 divisions will be rendered here dynamically by app.js -->
+                </div>
+                <button id="slider-next" class="slider-nav-btn">❯</button>
+            </div>
+            <div id="carousel-dots" class="carousel-dots"></div>
+        </section>
+
+        <!-- C. Quick 1-Click Grid -->
+        <section class="grid-section">
+            <h2>සියලුම අංශ (Quick Navigation Grid)</h2>
+            <div id="quick-grid" class="quick-grid">
+                <!-- Grid cards rendered dynamically -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Detail View Container (Hidden by default) -->
+    <div id="detail-view" class="detail-container" style="display:none;">
+        <div class="detail-top-bar">
+            <button id="back-to-home" class="btn-secondary">⬅️ ආපසු මුල් පිටුවට</button>
+            <h2 id="detail-title">අංශයේ නම</h2>
+            <button id="export-csv-btn" class="btn-accent">📊 වාර්තා (Export CSV)</button>
+        </div>
+        
+        <div class="officer-badge-bar">
+            <span>වගකිවයුතු නිලධාරියා: <strong id="detail-officer-name">නම</strong> (<span id="detail-officer-phone">දුරකථන අංකය</span>)</span>
+        </div>
+
+        <!-- Iframe Container -->
+        <div class="iframe-wrapper">
+            <div class="iframe-toolbar">
+                <span id="iframe-status" class="status-chip">සම්බන්ධයි</span>
+                <a id="open-new-tab-btn" href="#" target="_blank" rel="noopener" class="btn-link">වෙනම ටැබ් එකකින් විවෘත කරන්න (Open in New Tab ↗)</a>
+            </div>
+            <iframe id="division-iframe" src="" title="Division View"></iframe>
+        </div>
+
+        <!-- Sticky Bottom Officer Directive Box (WhatsApp) -->
+        <div class="directive-box">
+            <div class="directive-input-group">
+                <input type="text" id="directive-input" placeholder="අදාළ නිලධාරියාට උපදෙස් / පණිවිඩයක් යවන්න...">
+                <button id="send-whatsapp-btn" class="btn-whatsapp">🟢 WhatsApp මගින් යවන්න</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
